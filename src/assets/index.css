@@ -1,10 +1,18 @@
 @import "tailwindcss";
+
 html {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-primary);
-  --bg-primary: #303030;
+  background-color: #202123;
+  color: white;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 #app {
   font-family: "Arial", sans-serif;
   font-size: 16px;
@@ -13,4 +21,22 @@ html {
   margin: 0;
   padding: 0;
   height: 100vh;
+}
+
+/* Styl dla paska przewijania */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #718096;
 }

@@ -1,16 +1,14 @@
 <template>
-  <HeaderView />
-  <div class="flex ">
-    <SideBar />
-    <router-view></router-view>
+  <div class="h-screen flex flex-col bg-gray-800 text-white">
+    <div class="flex flex-1 overflow-hidden">
+      <SideBar />
+      <div class="flex-1 flex flex-col">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-import HeaderView from "./components/HeaderView.vue";
-import SideBar from "./components/SideBar.vue";
+import SideBar from "./components/SideBarComponents/SideBar.vue";
 </script>
-<style scoped>
-.content-container {
-  
-}
-</style>
+<style scoped></style>
