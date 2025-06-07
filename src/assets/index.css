@@ -1,0 +1,16 @@
+@import "tailwindcss";
+html {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  --bg-primary: #303030;
+}
+#app {
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
