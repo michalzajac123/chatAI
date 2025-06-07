@@ -10,13 +10,13 @@
       <UserMessage> Cześć! </UserMessage>
       <AiMessage> Witaj! Jak mogę Ci pomóc? </AiMessage>
     </div>
-    <InputView/>
+    <InputView />
   </div>
 </template>
 <script lang="ts" setup>
 import AiMessage from "./AiMessage.vue";
-import UserMessage from "./userMessage.vue";
-import InputView from "./InputView.vue"
+import UserMessage from "./UserMessage.vue";
+import InputView from "./InputView.vue";
 </script>
 
 <style scoped></style>
