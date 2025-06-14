@@ -3,6 +3,7 @@
     class="bg-gray-900 w-64 flex-shrink-0 h-full flex flex-col p-4 space-y-4"
   >
     <button
+      @click="createNewConversation"
       class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-between"
     >
       <span>Nowy czat</span>
@@ -23,12 +24,11 @@
     <!-- Chat History -->
     <div class="side-bar-container flex-grow overflow-y-auto space-y-2 pr-2">
       <SideBarElement
-        v-for="(element, index) in sideBarElements"
-        :key="index"
-        :title="element.title"
-        :link="element.link"
+        v-for="element in sideBarElements"
+        :key="element.conversationsId"
+        :conversationId="element.conversationsId"
       >
-        {{ element.title }}
+        {{ element.conversationsName }}
       </SideBarElement>
     </div>
 
@@ -68,9 +68,43 @@
 </template>
 <script lang="ts" setup>
 import SideBarElement from "./SideBarElement.vue";
-const sideBarElements = [
-  { title: "Przykladowa rozmowa 1", link: "#" },
-  { title: "Przykladowa rozmowa 2", link: "#" },
-];
+import { type Conversation, conversationStore } from "../../utils/store";
+import { ref, computed, watch } from "vue";
+import {
+  currentConversationId,
+  setCurrentConversation,
+} from "../../utils/conversationState";
+
+// Użyj reaktywnej referencji do konwersacji
+const conversations = computed(() => conversationStore.getConversations());
+
+const sideBarElements = computed(() => {
+  return conversations.value.map((conversation) => ({
+    conversationsName: conversation.conversationName,
+    conversationsId: conversation.conversationId,
+  }));
+});
+
+const createNewConversation = () => {
+  const newConversationId = (conversations.value.length + 1).toString();
+  const newConversation: Conversation = {
+    conversationId: newConversationId,
+    conversationName: `Nowa rozmowa ${newConversationId}`,
+    messages: [],
+  };
+  conversationStore.addConversation(newConversation);
+  setCurrentConversation(newConversationId); // Przełącz na nową konwersację
+};
+
+// Jeśli nie ma żadnej konwersacji, utwórz pierwszą
+watch(
+  conversations,
+  (newConversations) => {
+    if (newConversations.length === 0) {
+      createNewConversation();
+    }
+  },
+  { immediate: true }
+);
 </script>
 <style></style>
