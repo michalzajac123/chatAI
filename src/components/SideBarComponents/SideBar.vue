@@ -69,9 +69,8 @@
 <script lang="ts" setup>
 import SideBarElement from "./SideBarElement.vue";
 import { type Conversation, conversationStore } from "../../utils/store";
-import { ref, computed, watch } from "vue";
+import { computed, watch } from "vue";
 import {
-  currentConversationId,
   setCurrentConversation,
 } from "../../utils/conversationState";
 
