@@ -84,16 +84,26 @@ export const conversationStore = {
   },
 
   // Symulacja odpowiedzi asystenta (opcjonalnie)
-  async getAiResponse(conversationId: string): Promise<void> {
+  async getAiResponse(conversationId: string, message: string): Promise<void> {
     return new Promise((resolve) => {
-      setTimeout(() => {
+      (async () => {
+        const response = await fetch('https:api.promuj.app/?ask='+encodeURIComponent(message));
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        // Tutaj możesz przetworzyć odpowiedź z serwera, jeśli jest taka potrzeba
+        // Na przykład, jeśli serwer zwraca JSON z odpowiedzią AI:
+        const data = await response.json();
+        // const aiMessage = data.answer || "Odpowiedź AI nie jest dostępna";
+
         this.addMessageToConversation(conversationId, {
           role: "ai",
-          content:
-            "To jest automatyczna odpowiedź asystenta na Twoją wiadomość.",
+          content: data.answer || "Odpowiedź AI nie jest dostępna",
         });
         resolve();
-      }, 1000);
+      })()
     });
   },
 

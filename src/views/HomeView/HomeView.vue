@@ -66,7 +66,7 @@ const sendMessage = async (message: string) => {
   await scrollToBottom();
 
   isLoading.value = true;
-  await conversationStore.getAiResponse(currentConversationId.value.toString());
+  await conversationStore.getAiResponse(currentConversationId.value.toString(), message);
   isLoading.value = false;
 
   await scrollToBottom();

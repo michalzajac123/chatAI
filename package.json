@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@opendocsg/pdf2md": "^0.2.1",
     "@tailwindcss/vite": "^4.1.8",
     "tailwindcss": "^4.1.8",
     "vue": "^3.5.13",
