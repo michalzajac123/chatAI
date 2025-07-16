@@ -87,7 +87,7 @@ export const conversationStore = {
   async getAiResponse(conversationId: string, message: string): Promise<void> {
     return new Promise((resolve) => {
       (async () => {
-        const response = await fetch('https:api.promuj.app/?ask='+encodeURIComponent(message));
+        const response = await fetch('https://api.promuj.app/?ask='+encodeURIComponent(message));
 
         if (!response.ok) {
           throw new Error("Network response was not ok");
